@@ -1,4 +1,4 @@
-# Clean Architecture Template
+# Architecture 
 
 What's included in the template?
 
@@ -14,7 +14,6 @@ What's included in the template?
   - Pytest unit tests
   - Pytest integration tests (e2e tests)
 
-I'm open to hearing your feedback about the template and what you'd like to see in future iterations. DM me on LinkedIn or email me.
 
 --
 
@@ -33,5 +32,3 @@ I'm open to hearing your feedback about the template and what you'd like to see 
 # How to run tests.
 - Run `pytest` to run all tests
 
-
-Cheers!
