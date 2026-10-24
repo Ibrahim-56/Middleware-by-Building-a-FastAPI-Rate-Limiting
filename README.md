@@ -1,51 +1,28 @@
 # FastAPI Rate-Limiting Middleware
 
-A Python backend project built around a FastAPI service. The repository includes registration rate-limiting logic, authentication-related services, database integration, Docker configuration, and pytest tests.
+This repository contains test files and Docker configuration intended for a FastAPI backend project, but the current default-branch snapshot is incomplete: the application package imported by the tests (`src/`) is missing.
 
-## Included
+## Current status
 
-- FastAPI application and API routes
-- Rate limiting for registration
-- Authentication and user-management services
-- SQLAlchemy database integration
-- Pytest tests for authentication, users, and todo services
+- Pytest dependencies install successfully in GitHub Actions.
+- The test run currently stops during test discovery with `ModuleNotFoundError: No module named 'src'`.
+- The Dockerfile also expects `src/main.py`, which is not present in the current repository snapshot.
+
+Because the application source is missing, the API and its tests cannot currently be verified from this repository alone.
+
+## What is present
+
+- Pytest test files and fixtures
+- Requirements files
 - Dockerfile and Docker Compose configuration
+- Project notes and screenshots
 
-## Run with Docker Compose
+## To restore a reproducible project
 
-Requires Docker Engine or Docker Desktop with the Compose plugin.
+1. Restore the application package expected by the tests and Dockerfile.
+2. Confirm the actual module layout and update imports only if the source structure is intentionally different.
+3. Run `pytest -v` from a clean checkout.
+4. Run `docker compose up --build` and verify the API health and database connection.
+5. Replace the example database credentials in Docker Compose before using any shared environment.
 
-```bash
-docker compose up --build
-```
-
-The API is configured for port 8000. Stop the services with:
-
-```bash
-docker compose down
-```
-
-The Compose file uses example PostgreSQL credentials for local development only. Replace them and use environment-managed secrets before any shared or deployed environment.
-
-## Run tests locally
-
-Requires Python 3.11.
-
-```bash
-python -m venv .venv
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
-# macOS/Linux
-source .venv/bin/activate
-
-pip install -r requirements-dev.txt
-pytest -v
-```
-
-## Continuous integration
-
-GitHub Actions installs the development dependencies and runs pytest on pushes and pull requests targeting `main`. The result of each run is available in the repository's Actions tab.
-
-## Notes
-
-Run the tests and review the current dependency versions before relying on the project in another environment. This README does not imply a production deployment.
+The repository should not be presented as a currently runnable FastAPI service until the missing source has been restored and the tests pass.
