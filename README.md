@@ -1,55 +1,51 @@
 # FastAPI Rate-Limiting Middleware
 
-A Python backend project built around a FastAPI service, with rate limiting applied to registration and a test suite using pytest. The repository includes Docker configuration and dependencies for local development.
+A Python backend project built around a FastAPI service. The repository includes registration rate-limiting logic, authentication-related services, database integration, Docker configuration, and pytest tests.
 
-## What is included
+## Included
 
-- FastAPI application structure
-- Registration rate-limiting logic
-- Authentication-related service code
-- PostgreSQL-backed configuration, with SQLite described as a local alternative in the project setup
+- FastAPI application and API routes
+- Rate limiting for registration
+- Authentication and user-management services
+- SQLAlchemy database integration
 - Pytest tests for authentication, users, and todo services
-- Docker Compose configuration
+- Dockerfile and Docker Compose configuration
 
-## Run with Docker
+## Run with Docker Compose
 
-1. Install Docker Desktop or Docker Engine with the Compose plugin.
-2. From the repository root, run:
+Requires Docker Engine or Docker Desktop with the Compose plugin.
 
-   ```bash
-   docker compose up --build
-   ```
+```bash
+docker compose up --build
+```
 
-3. Stop the services with:
+The API is configured for port 8000. Stop the services with:
 
-   ```bash
-   docker compose down
-   ```
+```bash
+docker compose down
+```
 
-## Run locally
+The Compose file uses example PostgreSQL credentials for local development only. Replace them and use environment-managed secrets before any shared or deployed environment.
 
-Create and activate a virtual environment, then install the development dependencies:
+## Run tests locally
+
+Requires Python 3.11.
 
 ```bash
 python -m venv .venv
-# Windows PowerShell:
+# Windows PowerShell
 .venv\Scripts\Activate.ps1
-# macOS/Linux:
+# macOS/Linux
 source .venv/bin/activate
 
 pip install -r requirements-dev.txt
+pytest -v
 ```
 
-The original project instructions refer to the application entry point `src.main:app`. If the local source layout differs, use the actual module path in the repository.
+## Continuous integration
 
-## Run tests
+GitHub Actions installs the development dependencies and runs pytest on pushes and pull requests targeting `main`. The result of each run is available in the repository's Actions tab.
 
-```bash
-pytest
-```
+## Notes
 
-## Technology
-
-Python, FastAPI, pytest, Docker, Docker Compose, and database integration.
-
-The repository's tests and deployment configuration should be run locally to confirm their current status; this README does not imply that a CI run has passed.
+Run the tests and review the current dependency versions before relying on the project in another environment. This README does not imply a production deployment.
